@@ -2,38 +2,37 @@
 
 const BASE_PATH = __DIR__ . "/../";
 
-function p(mixed $value): void
-{
-    echo "<pre>";
-    print_r($value);
-    echo "</pre>";
-}
+require_once BASE_PATH."src/utils/functions.php";
+
+// PDO
+$dsn = "pgsql:host=localhost;port=5432;dbname=TaskManager;";
+$usr = "postgres";
+$pwd = "postgres";
 
 try{
-    $pdo = new PDO("pgsql:host=localhost;port=5432;dbname=TaskManager", "postgres", "postgres", [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_EMULATE_PREPARES => false,
+  $pdo = new PDO($dsn, $usr, $pwd, [
+      PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+      PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     ]);
-    error_log("Connexion DB reussie");
+    error_log("Connection is OK");
 }catch(PDOException $e){
-    error_log($e->getMessage());
+  error_log("Failed to connect to Db : " . $e->getMessage());
 }
 
 
+// ROUTING
 $path = $_SERVER["REQUEST_URI"];
-$method = $_SERVER["REQUEST_METHOD"];
 
-switch ($path) {
-    case "/":
-        require_once BASE_PATH . "src/homepage.php";
-        break;
-    case "/login":
-        require_once BASE_PATH . "src/login.php";
-        break;
-    case "/register":
-        require_once BASE_PATH . "src/register.php";
-        break;
-    default:
-        require_once BASE_PATH . "src/error.php";
+switch($path){
+  case ("/"):
+    requireFile("homepage");
+    break;
+  case ("/register"):
+    requireFile("register");
+    break;
+  case ("/login"):
+    requireFile("login");
+    break;
+  default:
+    requireFile("error");
 }
