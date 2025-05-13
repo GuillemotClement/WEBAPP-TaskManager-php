@@ -1,5 +1,5 @@
 services:
-  dbPomotask:
+  dbTaskManager:
     container_name: TaskManager
     image: postgres:17-alpine
     restart: always
@@ -9,6 +9,7 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
     volumes:
       - TaskManager:/var/lib/postgresql/data
+      - ./database:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
 
@@ -16,8 +17,9 @@ services:
     container_name: Adminer
     image: adminer
     restart: always
-    ports: 
+    ports:
       - "8085:8080"
 
 volumes:
   TaskManager:
+
