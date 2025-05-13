@@ -1,15 +1,18 @@
 <?php 
 require_once BASE_PATH . "src/partials/head.php";
+require_once BASE_PATH . "src/utils/pdo.php";
 
 const VALUE_IS_REQUIRED = "Une valeur est attendue";
 const VALUE_IS_TOO_SHORT = "La valeur est trop courte";
 const VALUE_NOT_VALID = "La valeur est invalide";
 const VALUE_IS_DIFFERENT = "La confirmation a echouer";
+const ERROR_NOT_VALID_URL = "URL invalide";
 
 $username = "";
 $email = "";
 $password = "";
 $confirmPassword = "";
+$image = "";
 
 if($_SERVER["REQUEST_METHOD"] === "POST"){
     $data = $_POST;
@@ -18,6 +21,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     $email = filter_var($data["email"], FILTER_SANITIZE_EMAIL) ?? "";
     $password = $data["password"] ?? "";
     $confirmPassword = $data["confirmPassword"] ?? "";
+    $image = $data["image"] ?? "";
 
     $errors = [];
 
@@ -45,15 +49,34 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         $errors["confirmPassword"] = VALUE_IS_DIFFERENT;
     }
 
-    if(count($errors) !== 0){
-        echo "top";
-        // on viens hasher le mdp 
-        // on viens envoyer les donnees en BDD
-        // on ajoute dans la session
-        // on redirige vers accueil
-    }
+    // if(!filter_var($image, FILTER_VALIDATE_URL)){
+    //     $errors["image"] = ERROR_NOT_VALID_URL;
+    // }
 
-    p($errors);
+    if(count($errors) === 0){
+
+        $hashPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $sql = "INSERT INTO users (username, email, password) VALUES (:username, :email, :password)";
+
+        $vars = [
+            "username" => $username,
+            "email" => $email,
+            "password" => $hashPassword,
+        ];
+
+        $stmp = $pdo->prepare($sql);
+
+        $success = $stmp->execute($vars);
+
+        if($success && $stmp->rowcount() === 1){
+            $lastId = $pdo->lastInsertId();
+            error_log("Insertion reussie :" . $lastId);
+            header("Location: /");
+        }else {
+            error_log("Echec de l'insertion");
+        }
+    }
 }
 ?>
 
