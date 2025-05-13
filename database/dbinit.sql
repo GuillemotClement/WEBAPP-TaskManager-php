@@ -18,3 +18,8 @@ CREATE TABLE task (
     delete_at TIMESTAMP,
     user_id INT REFERENCES users(id)
 );
+
+CREATE TABLE  status (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL
+);

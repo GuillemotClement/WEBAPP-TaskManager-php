@@ -11,3 +11,4 @@ function requireFile(string $pathToFile): void
 {
     require_once BASE_PATH . "src/$pathToFile.php";
 }
+

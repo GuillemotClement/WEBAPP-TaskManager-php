@@ -33,8 +33,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 
     if($success && $stmt->rowCount() === 1){
       $lastId = $pdo->lastInsertId();
-      error_log("Nouvelle tache creer avec succes : " . $lastId);
-      header("Location : /");
+      header("Location: /");
     }
 
     $errors["soumission"] = ERROR_FAILED_CREATED;

@@ -3,10 +3,9 @@
 const BASE_PATH = __DIR__ . "/../";
 require_once BASE_PATH."src/utils/functions.php";
 
-p($_SESSION);
-
 // ROUTING
-$path = $_SERVER["REQUEST_URI"];
+$uri = $_SERVER["REQUEST_URI"];
+$path = parse_url($uri)["path"];
 
 switch($path){
   case ("/"):
@@ -27,6 +26,13 @@ switch($path){
   case ("/tasks/listTask"):
     requireFile("tasks/listTask");
     break;
+  case ("/deleteTask"):
+    requireFile("tasks/deleteTask");
+    break;
+  case ("/updateTask"):
+    requireFile("tasks/updateTask");
+    break;
+
   default:
     requireFile("error");
 }
