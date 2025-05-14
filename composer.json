@@ -11,8 +11,5 @@
             "email": "guillemot.clement@protonmail.com"
         }
     ],
-    "require": {},
-    "require-dev": {
-        "squizlabs/php_codesniffer": "^3.0"
-    }
+    "require": {}
 }

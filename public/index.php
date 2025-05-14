@@ -2,6 +2,9 @@
 session_start();
 
 const BASE_PATH = __DIR__ . "/../";
+
+require_once BASE_PATH . "/vendor/autoload.php";
+
 require_once BASE_PATH."src/utils/functions.php";
 
 // ROUTING

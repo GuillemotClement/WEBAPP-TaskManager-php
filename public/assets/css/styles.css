@@ -39,6 +39,8 @@ body{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding: 1.2rem 3.0rem;
+
 }
 .header__picture{
     border-radius: var(--radius-rounded);
