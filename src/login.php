@@ -1,4 +1,5 @@
 <?php 
+ob_start();  // Commence le tampon de sortie
 require_once BASE_PATH . "src/partials/head.php";
 require_once BASE_PATH . "src/utils/pdo.php";
 
@@ -49,9 +50,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     $errors["credentials"] = ERROR_CREDENTIAL;
   }
 }
-
-
-
 
 ?>
 
