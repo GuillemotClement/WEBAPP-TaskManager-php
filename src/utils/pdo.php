@@ -1,7 +1,7 @@
 <?php
 
 // PDO
-$dsn = "pgsql:host=localhost;port=5432;dbname=TaskManager;";
+$dsn = "pgsql:host=dbTaskManager;port=5432;dbname=TaskManager;";
 $usr = "postgres";
 $pwd = "postgres";
 

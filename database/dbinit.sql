@@ -23,3 +23,9 @@ CREATE TABLE  status (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL
 );
+
+INSERT INTO status (title) VALUES 
+    ('ToDo'),
+    ('En cours'),
+    ('Validation'),
+    ('Terminer');

@@ -1,5 +1,8 @@
 <?php
-  session_start();
+session_start();
+
+echo "✅ Hello FrankenPHP avec PostgreSQL !<br>";
+
 const BASE_PATH = __DIR__ . "/../";
 require_once BASE_PATH."src/utils/functions.php";
 

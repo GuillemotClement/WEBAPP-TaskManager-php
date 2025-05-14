@@ -1,4 +1,15 @@
 services:
+  php:
+    build: .
+    restart: always 
+    ports: 
+      - "8080:443" # accès web http://localhost:8080
+    volumes: 
+      - ./public:/app/public
+      - ./src:/app/src
+    depends_on:
+      - dbTaskManager
+
   dbTaskManager:
     container_name: TaskManager
     image: postgres:17-alpine
@@ -12,13 +23,6 @@ services:
       - ./database:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
-
-  adminer:
-    container_name: Adminer
-    image: adminer
-    restart: always
-    ports:
-      - "8085:8080"
 
 volumes:
   TaskManager:
