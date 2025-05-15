@@ -1,3 +1,24 @@
+
+Projet : http://localhost:8000/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 PHPDocker.io generated environment
 ==================================
 
