@@ -1,7 +1,7 @@
 <?php
-
+session_start();
 use Root\App\Core\Database;
-
+p($_SESSION);
 const BASE_PATH = __DIR__ . "/../";
 require_once __DIR__ . "/../vendor/autoload.php";
 
@@ -55,4 +55,8 @@ if($path === "/"){
   requireController("homepage");
 }else if($path === "/register"){
   requireControllerDeux("user/createUser");
+}else if($path === "/login"){
+  requireControllerDeux("user/loginUser");
+}elseif($path === "/logout"){
+  requireControllerDeux("user/logout");
 }

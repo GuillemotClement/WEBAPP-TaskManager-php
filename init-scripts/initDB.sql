@@ -12,6 +12,7 @@ CREATE TABLE users (
     username VARCHAR(255) NOT NULL UNIQUE,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
+    image VARCHAR(255),
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP,
     deleted_at TIMESTAMP,
@@ -43,7 +44,7 @@ CREATE TABLE task (
     status_id INT NOT NULL DEFAULT 1,
     CONSTRAINT fk_user
         FOREIGN KEY (user_id)
-            REFERENCES user(id),
+            REFERENCES users(id),
     CONSTRAINT fk_status
         FOREIGN KEY (status_id)
             REFERENCES status(id)

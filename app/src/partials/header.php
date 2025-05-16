@@ -6,5 +6,7 @@
     </ul>
     <ul>
       <li><a href="/register">Inscription</a></li>
+      <li><a href="/login">Connexion</a></li>
+      <li><a href="/logout">Deconnexion</a></li>
     </ul>
   </header>
