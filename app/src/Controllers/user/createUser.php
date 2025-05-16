@@ -50,7 +50,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     $vars = [
       ":username" => $username,
       ":email" => $email,
-      ":password" => $password,
+      ":password" => $hashedPassword,
       ":image" => $image
     ];
 

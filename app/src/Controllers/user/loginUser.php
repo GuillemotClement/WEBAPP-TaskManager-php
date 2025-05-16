@@ -37,30 +37,26 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     $stmt = $db->pdo->prepare($sql);
     $stmt->execute($vars);
     $user = $stmt->fetchObject();
-    p($user);
-    if(!$user->username){
+p($user);
+    p($password);
+    p($user->password);
+
+
+    if (!$user || !password_verify($password, $user->password)) {
+      p("pas bien ");
+      die;
       $errors["credential"] = ERROR_CREDENTIAL_INVALID;
-    }
-
-    if(password_verify($password, $user->password)){
-
+    } else {
       $_SESSION["userId"] = $user->id;
-      $_SESSION["username"] = $user->username;
-      $_SESSION["email"] = $user->email;
-      $_SESSION["image"] = $user->image;
-      $_SESSION["role"] = $user->role_id;
-
       header("Location: /");
+      exit;
 
     }
-
-    $errors["credential"] = ERROR_CREDENTIAL_INVALID;
-
   }
   $data["errors"] = $errors;
   $data["inputData"] = $inputData;
 }
 
-$data["title"] = "Inscription";
+$data["title"] = "Connexion";
 
 renderViewDeux("user/loginUser", $data);
