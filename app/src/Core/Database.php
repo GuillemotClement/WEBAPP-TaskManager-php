@@ -20,7 +20,6 @@ class Database
         PDO::ERRMODE_EXCEPTION => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
       ]);
-      echo "Connexion success";
     }catch(PDOException $e){
       echo "Failed connected to DB : ". $e->getMessage();
     }
