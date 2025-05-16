@@ -4,4 +4,7 @@
     <ul>
       <li><a href="/">Accueil</a></li>
     </ul>
+    <ul>
+      <li><a href="/register">Inscription</a></li>
+    </ul>
   </header>

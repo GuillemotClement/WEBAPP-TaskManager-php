@@ -2,14 +2,14 @@
 
 namespace Root\App\Controllers;
 
-class UserController
+class oldUserController
 {
   private $model;
   private $data;
   private $page = "Homepage";
   public function __construct()
   {
-    $this->model = new UserController();
+    $this->model = new oldUserController();
     $this->data["page"] = $this->page;
   }
 

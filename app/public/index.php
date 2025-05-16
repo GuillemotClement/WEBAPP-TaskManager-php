@@ -33,13 +33,18 @@ function renderView(string $fileName, array $options){
   require_once BASE_PATH . "src/Views/{$fileName}View.php";
 }
 
+function renderViewDeux(string $filename, array $options){
+  extract($options);
+  require_once BASE_PATH . "src/Views/{$filename}View.php";
+}
+
 function requireController(string $controllerName){
   require_once BASE_PATH . "src/Controllers/{$controllerName}Controller.php";
 }
 
-$db = new Database();
-
-$db->pdo;
+function requireControllerDeux(string $controllerName){
+  require_once BASE_PATH . "src/Controllers/{$controllerName}.php";
+}
 
 $uri = $_SERVER["REQUEST_URI"];
 
@@ -48,6 +53,6 @@ $query = parse_url($uri)["query"] ?? "";
 
 if($path === "/"){
   requireController("homepage");
-}else if($path === "/user"){
-  requireController("User");
+}else if($path === "/register"){
+  requireControllerDeux("user/createUser");
 }
